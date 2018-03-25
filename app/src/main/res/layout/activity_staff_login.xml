@@ -4,20 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.phuongzzz.gogreen.MainActivity"
+    tools:context="com.phuongzzz.gogreen.StaffLoginActivity"
     android:orientation="vertical">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="email"
+        android:id="@+id/email"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="password"
+        android:id="@+id/password"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="I'M STAFF"
-        android:id="@+id/staff" >
-    </Button>
+        android:text="Login"
+        android:id="@+id/login"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="I'M MANAGER"
-        android:id="@+id/manager">
-    </Button>
-
+        android:text="Registration"
+        android:id="@+id/registration"/>
 </LinearLayout>
