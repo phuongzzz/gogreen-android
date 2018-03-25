@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "757479578614",
+    "firebase_url": "https://phuongzzz-gogreenapp.firebaseio.com",
+    "project_id": "phuongzzz-gogreenapp",
+    "storage_bucket": "phuongzzz-gogreenapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757479578614:android:33d36a0e902eb0b0",
+        "android_client_info": {
+          "package_name": "com.phuongzzz.gogreen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757479578614-8qfuijef6ftopa4mfo7npg3716mskoco.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.phuongzzz.gogreen",
+            "certificate_hash": "e83f65759dbb729c5aa79fc88459169443a72903"
+          }
+        },
+        {
+          "client_id": "757479578614-92mj71lfeapod554pkn70j341mufnf7o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCO141Kv4_SYVpyhwWcn0bvWlrqfbGaGhw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757479578614-92mj71lfeapod554pkn70j341mufnf7o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
