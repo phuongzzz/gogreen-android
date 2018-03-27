@@ -12,6 +12,8 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.firebase.geofire.GeoFire;
+import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
@@ -22,6 +24,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class StaffMapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
 
@@ -69,6 +74,13 @@ public class StaffMapActivity extends FragmentActivity implements OnMapReadyCall
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+
+
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("staffAvailable");
+
+        GeoFire geoFire = new GeoFire(ref);
+        geoFire.setLocation(userId, new GeoLocation(location.getLatitude(), location.getLongitude()));
     }
 
     @Override
@@ -110,5 +122,24 @@ public class StaffMapActivity extends FragmentActivity implements OnMapReadyCall
                 break;
             }
         }
+    }
+
+    @Override
+    public void onStop() {
+
+        super.onStop();
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("driversAvailable");
+
+        GeoFire geoFire = new GeoFire(ref);
+        geoFire.removeLocation(userId);
+//        super.onStop();
+//
+//        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("staffAvailable");
+//
+//        GeoFire geoFire = new GeoFire(ref);
+//        geoFire.removeLocation(userId);
     }
 }
