@@ -45,7 +45,8 @@
 
         <activity
             android:name=".StaffMapActivity"
-            android:label="@string/title_activity_staff_map"></activity>
+            android:label="@string/title_activity_staff_map" />
+        <activity android:name=".ManagerMapActivity"></activity>
     </application>
 
 </manifest>
