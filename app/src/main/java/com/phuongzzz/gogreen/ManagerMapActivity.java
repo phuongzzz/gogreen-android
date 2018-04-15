@@ -1,6 +1,7 @@
 package com.phuongzzz.gogreen;
 
 import android.*;
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -41,24 +42,20 @@ public class ManagerMapActivity  extends FragmentActivity implements OnMapReadyC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager_map);
+        setContentView(R.layout.activity_staff_map);
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(ManagerMapActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
-        } else {
-            mapFragment.getMapAsync(this);
         }
         mapFragment.getMapAsync(this);
 
         mLogout = (Button) findViewById(R.id.logout);
         mLogout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(ManagerMapActivity.this, MainActivity.class);
+            public void onClick(View v) {
+                Intent intent = new Intent (ManagerMapActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
-                return;
             }
         });
 
@@ -106,7 +103,7 @@ public class ManagerMapActivity  extends FragmentActivity implements OnMapReadyC
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(ManagerMapActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
+            ActivityCompat.requestPermissions(ManagerMapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
@@ -141,13 +138,14 @@ public class ManagerMapActivity  extends FragmentActivity implements OnMapReadyC
 
     @Override
     public void onStop() {
-
         super.onStop();
-//        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-//        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("driversAvailable");
-//
-//        GeoFire geoFire = new GeoFire(ref);
-//        geoFire.removeLocation(userId);
+//        if(isFinishing()) {
+//            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+//            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("staffAvailable");
+//            GeoFire geoFire = new GeoFire(ref);
+//            geoFire.removeLocation(userId);
+//            FirebaseAuth.getInstance().signOut();
+//        }
     }
 }
