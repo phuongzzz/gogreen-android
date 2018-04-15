@@ -26,6 +26,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,12 +38,13 @@ public class ManagerMapActivity  extends FragmentActivity implements OnMapReadyC
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     LocationRequest mLocationRequest;
-    private Button mLogout;
+    private Button mLogout, mRequest;
+    private LatLng pickingupLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_staff_map);
+        setContentView(R.layout.activity_manager_map);
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(ManagerMapActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
@@ -56,6 +58,22 @@ public class ManagerMapActivity  extends FragmentActivity implements OnMapReadyC
                 Intent intent = new Intent (ManagerMapActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        mRequest = (Button) findViewById(R.id.request);
+        mRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("managerRequest");
+                GeoFire geoFire = new GeoFire(ref);
+                geoFire.setLocation(userId, new GeoLocation(mLastLocation.getLatitude(), mLastLocation.getLongitude()));
+
+                pickingupLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(pickingupLocation).title("Picking Up here"));
+                mRequest.setText("Calling Staff");
             }
         });
 
@@ -85,7 +103,7 @@ public class ManagerMapActivity  extends FragmentActivity implements OnMapReadyC
         mLastLocation = location;
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(20.0f));
 
 
 //        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
