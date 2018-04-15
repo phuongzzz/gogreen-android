@@ -25,6 +25,7 @@ public class StaffLoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
+    private boolean isLoggedIn = false, backFromMap = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +36,12 @@ public class StaffLoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if(user != null) {
+                if(user != null && !isLoggedIn) {
+                    isLoggedIn = true;
+                    backFromMap = true;
                     Intent intent = new Intent(StaffLoginActivity.this, StaffMapActivity.class);
                     startActivity(intent);
                     finish();
-                    return;
                 }
             }
         };
