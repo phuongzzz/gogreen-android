@@ -280,7 +280,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
 
         mMap.addMarker(new MarkerOptions()
                 .position(new LatLng(21.029188, 105.846284))
-                .title("Hello world")).setIcon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+                .title("Water me!")).setIcon(BitmapDescriptorFactory.fromBitmap(smallMarker));
     }
 
     protected synchronized void buildGoogleApiClient(){
