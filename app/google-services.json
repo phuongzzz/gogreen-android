@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "381968122507",
+    "firebase_url": "https://phuong-gg.firebaseio.com",
+    "project_id": "phuong-gg",
+    "storage_bucket": "phuong-gg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381968122507:android:2ac8c7eb10297239",
+        "android_client_info": {
+          "package_name": "com.simcoder.uber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381968122507-l7ton0u563ca6h6baggop5n9b9l6fe6u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.simcoder.uber",
+            "certificate_hash": "e83f65759dbb729c5aa79fc88459169443a72903"
+          }
+        },
+        {
+          "client_id": "381968122507-pm8bhisrqhkm4shl9lpdal7cqpvco94b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkIxb6qn-Q5d-qtPWVAMeucYacQA6jEX0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381968122507-pm8bhisrqhkm4shl9lpdal7cqpvco94b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
