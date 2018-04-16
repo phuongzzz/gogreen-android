@@ -1,14 +1,21 @@
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.simcoder.uber.DriverCalendarActivity" >
 
     <Button
-        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/back"
         android:text="Back to Maps"/>
-</FrameLayout>
+    <CalendarView
+        android:firstDayOfWeek="2"
+        android:maxDate="01/01/2019"
+        android:minDate="01/04/2018"
+        android:id="@+id/simpleCalendarView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+</LinearLayout>
