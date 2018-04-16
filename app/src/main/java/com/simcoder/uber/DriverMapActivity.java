@@ -60,7 +60,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     Location mLastLocation;
     LocationRequest mLocationRequest;
 
-    private Button mLogout, mSettings;
+    private Button mLogout, mSettings, mCalendar;
 
     private String customerId = "";
 
@@ -100,6 +100,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
 
         mSettings = (Button) findViewById(R.id.settings);
         mLogout = (Button) findViewById(R.id.logout);
+        mCalendar = (Button) findViewById(R.id.calendar);
         mLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,7 +124,16 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
             }
         });
 
-        getAssignedCustomer();
+        mCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DriverMapActivity.this, DriverCalendarActivity.class);
+                startActivity(intent);
+                return;
+            }
+        });
+
+//        getAssignedCustomer();
     }
 
     private void getAssignedCustomer(){
@@ -182,7 +192,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                     }
                     LatLng pickupLatLng = new LatLng(locationLat,locationLng);
                     pickupMarker = mMap.addMarker(new MarkerOptions().position(pickupLatLng).title("pickup location").icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_pickup)));
-                    getRouteToMarker(pickupLatLng);
+//                    getRouteToMarker(pickupLatLng);
                 }
             }
 

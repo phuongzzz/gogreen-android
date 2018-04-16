@@ -6,10 +6,17 @@
     tools:context="com.simcoder.uber.DriverMapActivity" >
 
     <Button
+        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/logout"
         android:text="logout"/>
+    <Button
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/calendar"
+        android:text="Calendar"/>
     <Button
         android:layout_gravity="end"
         android:layout_width="wrap_content"
