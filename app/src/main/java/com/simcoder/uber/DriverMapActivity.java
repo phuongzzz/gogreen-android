@@ -276,21 +276,25 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         int width = 300;
         BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.t1);
         Bitmap b=bitmapdraw.getBitmap();
-        Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+        final Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+
+        BitmapDrawable bm = (BitmapDrawable)getResources().getDrawable(R.drawable.t2);
+        Bitmap b1 = bm.getBitmap();
+        final Bitmap watered = Bitmap.createScaledBitmap(b1, width, height, false);
 
         final Marker marker =  mMap.addMarker(
                 new MarkerOptions()
                         .position(new LatLng(21.029188, 105.84628))
                         .title("Your title")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.t1)));
+                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
 
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 if (lastClicked!=null)
-                    lastClicked.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.t1));
-                marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.t2));
+                    lastClicked.setIcon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+                marker.setIcon(BitmapDescriptorFactory.fromBitmap(watered));
                 lastClicked = marker;
                 return true;
             }
