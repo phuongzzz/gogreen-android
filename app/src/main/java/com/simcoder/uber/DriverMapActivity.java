@@ -4,6 +4,8 @@ import android.*;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.support.annotation.NonNull;
@@ -55,6 +57,8 @@ import java.util.Objects;
 
 public class DriverMapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, RoutingListener {
 
+    Marker lastClicked = null;
+
     private GoogleMap mMap;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
@@ -88,7 +92,6 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         }else{
             mapFragment.getMapAsync(this);
         }
-
 
         mCustomerInfo = (LinearLayout) findViewById(R.id.customerInfo);
 
@@ -268,6 +271,16 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         }
         buildGoogleApiClient();
         mMap.setMyLocationEnabled(true);
+
+        int height = 300;
+        int width = 300;
+        BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.t1);
+        Bitmap b=bitmapdraw.getBitmap();
+        Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+
+        mMap.addMarker(new MarkerOptions()
+                .position(new LatLng(21.029188, 105.846284))
+                .title("Hello world")).setIcon(BitmapDescriptorFactory.fromBitmap(smallMarker));
     }
 
     protected synchronized void buildGoogleApiClient(){
