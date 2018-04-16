@@ -102,17 +102,17 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="UberX"
+                    android:text="Official"
                     android:id="@+id/UberX"/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="UberBlack"
+                    android:text="Part time"
                     android:id="@+id/UberBlack"/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="UberXl"
+                    android:text="Collaborator"
                     android:id="@+id/UberXl"/>
             </RadioGroup>
 
@@ -120,7 +120,7 @@
                 android:layout_gravity="bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="call Uber"
+                android:text="Find Staff"
                 android:id="@+id/request"/>
         </LinearLayout>
     </LinearLayout>
