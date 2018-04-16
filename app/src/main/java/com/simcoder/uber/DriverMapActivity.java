@@ -278,9 +278,23 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         Bitmap b=bitmapdraw.getBitmap();
         Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
-        mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(21.029188, 105.846284))
-                .title("Water me!")).setIcon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+        final Marker marker =  mMap.addMarker(
+                new MarkerOptions()
+                        .position(new LatLng(21.029188, 105.84628))
+                        .title("Your title")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.t1)));
+
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                if (lastClicked!=null)
+                    lastClicked.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.t1));
+                marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.t2));
+                lastClicked = marker;
+                return true;
+            }
+        });
     }
 
     protected synchronized void buildGoogleApiClient(){
@@ -363,7 +377,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                 if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     mapFragment.getMapAsync(this);
                 } else{
-                  Toast.makeText(getApplicationContext(), "Please provide the permission", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please provide the permission", Toast.LENGTH_LONG).show();
                 }
                 break;
             }
