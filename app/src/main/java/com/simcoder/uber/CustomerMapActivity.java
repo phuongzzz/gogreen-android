@@ -86,6 +86,9 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
 
     private RadioGroup mRadioGroup;
 
+    private Button buttonListJob;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +110,7 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
         mDriverName = (TextView) findViewById(R.id.driverName);
         mDriverPhone = (TextView) findViewById(R.id.driverPhone);
         mDriverCar = (TextView) findViewById(R.id.driverCar);
+        buttonListJob = (Button) findViewById(R.id.button_list_job);
 
 
         mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
@@ -115,6 +119,13 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
         mLogout = (Button) findViewById(R.id.logout);
         mRequest = (Button) findViewById(R.id.request);
         mSettings = (Button) findViewById(R.id.settings);
+
+        buttonListJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomerMapActivity.this, ListJobActivity.class));
+            }
+        });
 
         mLogout.setOnClickListener(new View.OnClickListener() {
             @Override
