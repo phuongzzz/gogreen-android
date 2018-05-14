@@ -54,12 +54,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
 
 public class DriverMapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, RoutingListener {
 
     Marker lastClicked = null;
 
     private GoogleMap mMap;
+    private MarkerOptions options = new MarkerOptions();
+    private ArrayList<LatLng> latlngs = new ArrayList<>();
+    private ArrayList<LatLng> red_tree = new ArrayList<>();
+    private ArrayList<LatLng> green_tree = new ArrayList<>();
+
+
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     LocationRequest mLocationRequest;
@@ -264,16 +271,8 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        buildGoogleApiClient();
-        mMap.setMyLocationEnabled(true);
-
-        int height = 300;
-        int width = 300;
+        int height = 100;
+        int width = 100;
         BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.t1);
         Bitmap b=bitmapdraw.getBitmap();
         final Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
@@ -282,20 +281,132 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         Bitmap b1 = bm.getBitmap();
         final Bitmap watered = Bitmap.createScaledBitmap(b1, width, height, false);
 
-        final Marker marker =  mMap.addMarker(
-                new MarkerOptions()
-                        .position(new LatLng(21.029188, 105.84628))
-                        .title("Your title")
-                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
+        BitmapDrawable bd = (BitmapDrawable)getResources().getDrawable(R.drawable.red);
+        Bitmap b2 = bd.getBitmap();
+        final Bitmap red = Bitmap.createScaledBitmap(b2, width, height, false);
+
+        mMap = googleMap;
+        latlngs.add(new LatLng(21.005618, 105.843397));
+        latlngs.add(new LatLng(21.005618, 105.843447));
+        latlngs.add(new LatLng(21.005618, 105.843497));
+        latlngs.add(new LatLng(21.005618, 105.843547));
+        latlngs.add(new LatLng(21.005618, 105.843597));
+        latlngs.add(new LatLng(21.005618, 105.843347));
+        latlngs.add(new LatLng(21.005618, 105.843297));
+        latlngs.add(new LatLng(21.005618, 105.843397));
+        latlngs.add(new LatLng(21.005618, 105.843247));
+        latlngs.add(new LatLng(21.005618, 105.843197));
+        latlngs.add(new LatLng(21.005618, 105.843147));
+        latlngs.add(new LatLng(21.005618, 105.843097));
+        latlngs.add(new LatLng(21.005618, 105.843147));
+
+        latlngs.add(new LatLng(21.005718, 105.843397));
+        latlngs.add(new LatLng(21.005718, 105.843447));
+        latlngs.add(new LatLng(21.005718, 105.843497));
+        latlngs.add(new LatLng(21.005718, 105.843547));
+        latlngs.add(new LatLng(21.005718, 105.843597));
+        latlngs.add(new LatLng(21.005718, 105.843347));
+        latlngs.add(new LatLng(21.005718, 105.843397));
+        latlngs.add(new LatLng(21.005718, 105.843347));
+        latlngs.add(new LatLng(21.005718, 105.843297));
+        latlngs.add(new LatLng(21.005718, 105.843397));
+        latlngs.add(new LatLng(21.005718, 105.843247));
+        latlngs.add(new LatLng(21.005718, 105.843197));
+        latlngs.add(new LatLng(21.005718, 105.843147));
+        latlngs.add(new LatLng(21.005718, 105.843097));
+        latlngs.add(new LatLng(21.005718, 105.843147));
+
+        latlngs.add(new LatLng(21.005518, 105.843397));
+        latlngs.add(new LatLng(21.005518, 105.843447));
+        latlngs.add(new LatLng(21.005518, 105.843497));
+        latlngs.add(new LatLng(21.005518, 105.843547));
+        latlngs.add(new LatLng(21.005518, 105.843597));
+        latlngs.add(new LatLng(21.005518, 105.843347));
+        latlngs.add(new LatLng(21.005518, 105.843397));
+        latlngs.add(new LatLng(21.005518, 105.843347));
+        latlngs.add(new LatLng(21.005518, 105.843297));
+        latlngs.add(new LatLng(21.005518, 105.843397));
+        latlngs.add(new LatLng(21.005518, 105.843247));
+        latlngs.add(new LatLng(21.005518, 105.843197));
+        latlngs.add(new LatLng(21.005518, 105.843147));
+        latlngs.add(new LatLng(21.005518, 105.843097));
+        latlngs.add(new LatLng(21.005518, 105.843147));
+
+        latlngs.add(new LatLng(21.005418, 105.843397));
+        latlngs.add(new LatLng(21.005418, 105.843447));
+        latlngs.add(new LatLng(21.005418, 105.843497));
+        latlngs.add(new LatLng(21.005418, 105.843547));
+        latlngs.add(new LatLng(21.005418, 105.843597));
+        latlngs.add(new LatLng(21.005418, 105.843347));
+        latlngs.add(new LatLng(21.005418, 105.843397));
+        latlngs.add(new LatLng(21.005418, 105.843347));
+        latlngs.add(new LatLng(21.005418, 105.843297));
+        latlngs.add(new LatLng(21.005418, 105.843397));
+        latlngs.add(new LatLng(21.005418, 105.843247));
+        latlngs.add(new LatLng(21.005418, 105.843197));
+        latlngs.add(new LatLng(21.005418, 105.843147));
+        latlngs.add(new LatLng(21.005418, 105.843097));
+        latlngs.add(new LatLng(21.005418, 105.843147));
+
+
+        for (int i = 0; i < latlngs.size(); i++) {
+            Random rand = new Random();
+            int randomIndex = rand.nextInt(latlngs.size());
+            LatLng randomPoint = latlngs.get(randomIndex);
+            red_tree.add(randomPoint);
+            latlngs.remove(randomPoint);
+        }
+
+
+        for (LatLng point : latlngs) {
+            mMap.addMarker(
+                    new MarkerOptions()
+                            .position(point)
+                            .title("Your title")
+                            .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
+
+
+        }
+
+        for (LatLng point: red_tree) {
+            mMap.addMarker(
+                    new MarkerOptions()
+                            .position(point)
+                            .title("Your title")
+                            .icon(BitmapDescriptorFactory.fromBitmap(red)));
+
+        }
+
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        buildGoogleApiClient();
+        mMap.setMyLocationEnabled(true);
+
+//        int height = 100;
+//        int width = 100;
+//        BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.t1);
+//        Bitmap b=bitmapdraw.getBitmap();
+//        final Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+//
+//        BitmapDrawable bm = (BitmapDrawable)getResources().getDrawable(R.drawable.t2);
+//        Bitmap b1 = bm.getBitmap();
+//        final Bitmap watered = Bitmap.createScaledBitmap(b1, width, height, false);
+
+//        final Marker marker =  mMap.addMarker(
+//                new MarkerOptions()
+//                        .position(new LatLng(21.005618, 105.843347))
+//                        .title("Your title")
+//                        .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
 
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                if (lastClicked!=null)
-                    lastClicked.setIcon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+//                if (lastClicked!=null)
+//                    lastClicked.setIcon(BitmapDescriptorFactory.fromBitmap(smallMarker));
                 marker.setIcon(BitmapDescriptorFactory.fromBitmap(watered));
-                lastClicked = marker;
                 return true;
             }
         });
@@ -315,7 +426,8 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         if(getApplicationContext()!=null){
 
             mLastLocation = location;
-            LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
+//            LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
+            LatLng latLng = new LatLng(21.005618, 105.843347);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(20.0f));
 
